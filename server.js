@@ -3,12 +3,7 @@ import auth from './controllers/auth.controller.js'
 import runnersRoutes from './routes/runners.routes.js'
 import teamsRoutes from './routes/teams.routes.js'
 import stagesRoutes from './routes/stages.routes.js'
-
-const cors = () => (req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
-	res.setHeader('Access-Control-Allow-Headers', '*')
-	next()
-}
+import cors from 'cors'
 
 const app = express()
 app.use(express.json())

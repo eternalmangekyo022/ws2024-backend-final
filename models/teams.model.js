@@ -15,6 +15,7 @@ export default {
 	async delete(user, id) {
 		if (!user.isAdmin) throw 403
 		await db.query('delete from teams where id = ?', id)
+		await db.query('delete from runners where teamId = ?', id)
 		return
 	}
 }
