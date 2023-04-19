@@ -1,0 +1,8 @@
+GET http://localhost/teams/1/runners
+Authorization: 111111111
+
+###
+POST http://localhost/login
+Content-Type: application/json
+
+{ "token": 111111111 }
