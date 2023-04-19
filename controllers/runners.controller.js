@@ -3,7 +3,7 @@ import model from '../models/runners.model.js'
 export default {
 	async findByTeam({ params: { teamId } }, res) {
 		const runners = await model.findByTeam(teamId)
-		res.json(runners[0])
+		res.json(runners)
 	},
 
 	async create({ user, params: { teamId }, body: { firstName, lastName, speed } }, res) {

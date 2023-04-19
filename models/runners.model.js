@@ -7,7 +7,12 @@ export default {
 
 	async create(user, teamId, firstName, lastName, speed) {
 		if (!user.isAdmin) throw 403
-		const { insertId } = await db.query('insert into runners(teamId, firstName, lastName, speed, isAdmin) values(?, ?, ?, ?, false)', [teamId, firstName, lastName, speed])
+		let token = parseInt((Math.random() * Math.pow(10, 9)).toString().split('.')[0])
+		while(true) {			
+			const tokens = await db.query('select token from runners')
+			if(tokens.filter(i => i.token === token).length === 0) break
+		}
+		const { insertId } = await db.query('insert into runners(teamId, firstName, lastName, speed, isAdmin, token) values(?, ?, ?, ?, false, ?)', [teamId, firstName, lastName, speed, token])
 		return await db.query('select * from runners where id = ?', insertId)
 	},
 

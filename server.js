@@ -19,6 +19,7 @@ stagesRoutes(app, use)
 runnersRoutes(teamsRoutes(app, use), use)
 
 app.use((err, req, res, next) => {
+	console.log(err)
 	if (err === 403) res.status(403).json({ status: 'error', message: 'Not admin' })
 	else res.status(500).json({ status: 'error', message: 'Unknown error' })
 })
